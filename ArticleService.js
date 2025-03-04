@@ -22,7 +22,7 @@ function getArticle(articleId) {
   return axios.get(`${ArticleService_URL}/${articleId}`)
     .then(res => {
       console.log(`Status: ${res.status} - Article fetched successfully.`);
-      return res.json();
+      return res.data;
     })
     .catch(error => {
       handleError(error);
@@ -34,7 +34,7 @@ function createArticle({ title, content, tags }) {
   return axios.post(ArticleService_URL, { title, content, tags })
     .then(res => {
       console.log(`Status: ${res.status} - Article created successfully.`);
-      return res.json();
+      return res.data;
     })
     .catch(error => {
       handleError(error);
@@ -58,7 +58,7 @@ function deleteArticle(articleId, password) {
   return axios.delete(`${ArticleService_URL}/${articleId}`, { data:{password} })
     .then(res => {
       console.log(`Status: ${res.status} - Article deleted successfully.`);
-      return res.json();
+      return res.data;
     })
     .catch(error => {
       handleError(error);
