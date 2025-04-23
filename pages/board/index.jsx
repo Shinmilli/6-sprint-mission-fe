@@ -1,0 +1,42 @@
+import React from "react";
+import styled from "styled-components";
+import { Container } from "@/styles/CommonStyles";
+import BestArticlesSection from "@/components/board/BestArticlesSection";
+import AllArticlesSection from "@/components/board/AllArticlesSection";
+
+// 참고: Next.js에서는 pages 내의 모든 파일을 라우팅 가능한 페이지로 보기 때문에 실제 페이지 컴포넌트를 제외한 components, styles 등의 폴더 또는 파일은 pages 밖의 디렉토리에 추가해 주세요.
+//      - 개발 모드에서는 정상적으로 동작했지만 빌드에 실패했다면 이 이슈일 가능성이 있어요.
+
+const PageContainer = styled(Container)`
+  gap: 40px;
+`;
+
+// 데이터 prefetching은 페이지 로딩 전에 필요한 데이터를 미리 가져오는 과정이기 때문에 페이지 수준에서 수행한 후에 해당 데이터를 필요로 하는 컴포넌트에 prop으로 전달
+export const getStaticProps = async () => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/articles?orderBy=recent`
+  );
+  const data = await response.json();
+
+  return {
+    props: {
+      initialArticles: data.data || [], // 데이터가 없을 경우 빈 배열
+      hasNext: data.hasNext || false, // 다음 페이지가 있는지 여부
+      nextCursor: data.nextCursor || null, // 다음 페이지를 위한 커서
+    },
+    revalidate: 60, // 60초마다 정적 페이지를 재생성
+  };
+};
+
+export default function BoardPage({ initialArticles, hasNext, nextCursor }) {
+  return (
+    <PageContainer>
+      <BestArticlesSection />
+      <AllArticlesSection
+        initialArticles={initialArticles}
+        hasNext={hasNext}
+        nextCursor={nextCursor}
+      />
+    </PageContainer>
+  );
+}
