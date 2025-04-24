@@ -1,0 +1,138 @@
+a {
+  color: #f3f4f6;
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+* {
+  font-family: Pretendard;
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}
+body {
+  margin: 0px;
+}
+
+.footer {
+  background-color: #111827;
+  width: 100%;
+  height: 160px;
+  font-size: 16px;
+}
+.foot {
+  padding-top: 32px;
+  margin-left: 200px;
+  margin-right: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.shadowFoot {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.codeit1 {
+  width: 120px;
+  height: 19px;
+  font-size: 1em;
+  color: #9ca3af;
+}
+.codeit2 {
+  display: none;
+}
+
+.icon {
+  width: 116px;
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footerSpace {
+  width: 159px;
+  height: 19px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.icon {
+  width: 116px;
+  height: 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+/* Tablet 사이즈 */
+@media (min-width: 744px) and (max-width: 1199px) {
+  .foot {
+    margin-left: 32px;
+    margin-right: 32px;
+    margin-bottom: 108px;
+  }
+  .shadowFoot {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .icon {
+    width: 116px;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .codeit2 {
+    display: none;
+  }
+  .codeit1 {
+    display: block;
+  }
+}
+
+/* Mobile 사이즈 */
+@media (min-width: 375px) and (max-width: 743px) {
+  .foot {
+    flex-direction: column;
+    height: 63px;
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-bottom: 65px;
+  }
+  .shadowFoot {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 24px;
+  }
+  .icon {
+    width: 116px;
+    height: 20px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .codeit1 {
+    display: none;
+  }
+  .codeit2 {
+    display: block;
+    color: #9ca3af;
+  }
+}
