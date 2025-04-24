@@ -1,47 +1,47 @@
-import React from "react";
+// "use client";
+// Link로 변경
 
-function Footer() {
+import FacebookIcon from "@/assests/facebook.svg";
+import TwitterIcon from "@/assests/twitter.svg";
+import YoutubeIcon from "@/assests/youtube.svg";
+import InstagramIcon from "@/assests/instagram.svg";
+import Image from "next/image";
+
+export default function Footer() {
   return (
-    <div>
-      <footer className="bg-secondary w-full h-[160px] text-[16px]">
-        <div
-          className="pt-[32px] mx-[200px] flex flex-col
-  md:mx-[32px] md:mb-[108px]
-  sm:flex-col sm:h-[63px] sm:mx-[16px] sm:mb-[65px]"
-        >
-          <div className="w-full flex flex-row justify-between mb-0 sm:mb-[24px]">
-            <p className="w-[120px] h-[19px] text-[1em] text-[#9ca3af] block">
-              @codeit - 2024
-            </p>
-            <span className="w-[159px] h-[19px] flex flex-row justify-between cursor-pointer text-[#E5E7EB]">
-              <a to="/privacy"> Privacy Policy </a>
-              <a to="/faq">FAQ </a>
-            </span>
-            <span className="w-[116px] h-[20px] flex flex-row justify-between cursor-pointer">
-              <a href="https://ko-kr.facebook.com/">
-                <img src="/image/footer/Group.png" />
-              </a>
-              <a href="https://x.com/?mx=2">
-                <img src="/image/footer/ic_twitter.png" />
-              </a>
-              <a href="https://www.youtube.com/">
-                <img src="/image/footer/ic_youtube.png" />
-              </a>
-              <a href="https://www.instagram.com/">
-                <img src="/image/footer/ic_instagram.png" />
-              </a>
-            </span>
-          </div>
+    <footer className="bg-[#111827] text-gray-400 text-sm px-4 py-6 xl:px-[200px] xl:py-6 h-24 flex items-start justify-between">
+      {/* 왼쪽: 카피라이트 */}
+      <div className="text-center xl:text-left">©codeit - 2024</div>
 
-          <div className="w-full flex flex-row justify-between mb-0 sm:mb-[24px]">
-            <p className="hidden sm:block text-[1em] text-[#9ca3af] sm:hidden">
-              @codeit - 2024
-            </p>
-          </div>
-        </div>
-      </footer>
-    </div>
+      {/* 가운데: 메뉴 */}
+      <ul className="hidden xl:flex gap-6">
+        <li>
+          <a href="#" className="hover:text-white transition">
+            Privacy Policy
+          </a>
+        </li>
+        <li>
+          <a href="#" className="hover:text-white transition">
+            FAQ
+          </a>
+        </li>
+      </ul>
+
+      {/* 오른쪽: 소셜 아이콘 */}
+      <div className="flex gap-3">
+        <a href="#" className="hover:opacity-80 transition">
+          <Image src={FacebookIcon} alt="Facebook" className="w-5 h-5" />
+        </a>
+        <a href="#" className="hover:opacity-80 transition">
+          <Image src={TwitterIcon} alt="Twitter" className="w-5 h-5" />
+        </a>
+        <a href="#" className="hover:opacity-80 transition">
+          <Image src={YoutubeIcon} alt="YouTube" className="w-5 h-5" />
+        </a>
+        <a href="#" className="hover:opacity-80 transition">
+          <Image src={InstagramIcon} alt="Instagram" className="w-5 h-5" />
+        </a>
+      </div>
+    </footer>
   );
 }
-
-export default Footer;

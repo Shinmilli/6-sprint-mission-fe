@@ -1,9 +1,3 @@
-import React from "react";
-
-function page() {
-  return (
-    <div className="text-4xl pt-[94px]">Hello, Welcome to Login Page!</div>
-  );
+export default function Login() {
+  return <div className="flex justify-center mt-20">LoginPage</div>;
 }
-
-export default page;

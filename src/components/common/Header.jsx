@@ -1,72 +1,64 @@
 "use client";
 
-import React from "react";
+import Image from "next/image";
+import Logo from "@/assests/logo.svg";
 import Link from "next/link";
-import Button from "../ui/Button";
-import { usePathname, useRouter } from "next/navigation";
-import { useNav } from "@/providers/NavIndexProvider";
+import { usePathname } from "next/navigation";
+// 이동시 텍스트 색상 유지를 위해 usePathname 적용
 
-function Header() {
-  const router = useRouter();
-  const pathName = usePathname();
-  const { activePage, setActivePage } = useNav();
+export default function Header() {
+  const pathname = usePathname();
 
-  const handelLogin = () => {
-    router.push("/login");
-  };
+  const navItems = [
+    { name: "자유게시판", href: "/article" },
+    { name: "중고마켓", href: "/market" },
+  ];
 
   return (
-    <header className="fixed bg-white z-[1] w-full h-[70px] flex flex-col border-b border-gray-200">
-      <div className="w-full h-[51px] pt-[9.5px] flex justify-around items-center text-[16px]">
-        <div className="flex items-center cursor-pointer">
-          <img
-            className="w-[40px] h-[40.14px]"
-            alt="작은 판다 얼굴"
-            src="/image/header/작은 판다 얼굴.png"
+    <header className="fixed top-0 left-0 w-full h-[60px] flex items-center justify-between px-4 xl:px-[200px] bg-white border-b border-gray-200 z-[999]">
+      <div className="flex items-center max-w-[1200px] w-full mx-auto">
+        <Link href="/">
+          <Image
+            src={Logo}
+            alt="판다마켓 로고"
+            width={153}
+            height={40}
+            className="mr-4 md:mr-[35px] xl:mr-[47px]"
           />
-          <Link href={"/"}>
-            <img
-              className="flex justify-between cursor-pointer pl-[8.9px] w-[103px] h-[26px]"
-              src="/image/header/판다마켓.png"
-              alt="판다마켓"
-            />
-          </Link>
-
-          <div className="flex justify-between w-[218px] ml-[47px] mr-[23px] font-pretendard font-bold">
-            <Link href="/articles" onClick={() => setActivePage("/post")}>
-              <div
-                className={`h-[26px] text-[18px] ${
-                  pathName === "/articles" || pathName === "/posting"
-                    ? "text-primary"
-                    : ""
-                }`}
-              >
-                {" "}
-                자유게시판{" "}
-              </div>
-            </Link>
-            <Link href="/market">
-              <div
-                className={`h-[26px] text-[18px] ${
-                  pathName === "/market" ? "text-primary" : ""
-                } mr-[30px]`}
-              >
-                중고마켓
-              </div>
-            </Link>
-          </div>
-        </div>
-
-        <Button
-          text="로그인"
-          onClick={handelLogin}
-          disabled={false}
-          width={"w-[88px]"}
-          height={"h-[42px]"}
-        />
+        </Link>
+        <nav>
+          <ul className="flex gap-2 md:gap-9 font-bold text-base md:text-lg">
+            {navItems.map((item) => {
+              const isClick = pathname.startsWith(item.href);
+              return (
+                <li key={item.name}>
+                  <Link
+                    href={item.href}
+                    className={`transition ${
+                      isClick ? "text-blue-500" : "text-gray-600"
+                    } hover:text-blue-500`}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
       </div>
+
+      <Link href="/login">
+        <button
+          type="button"
+          className="text-white bg-blue-500 hover:bg-blue-600 focus:bg-blue-700 
+                        font-medium text-xs md:text-base 
+                        rounded-lg py-2.5 px-4 md:py-[10px] md:px-[20px] 
+                        cursor-pointer disabled:bg-gray-400 
+                        whitespace-nowrap"
+        >
+          로그인
+        </button>
+      </Link>
     </header>
   );
 }
-
-export default Header;
